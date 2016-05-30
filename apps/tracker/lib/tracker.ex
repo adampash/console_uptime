@@ -12,6 +12,7 @@ defmodule Tracker do
   and the raw HTML.
   """
   def check({service, url, {type, selector}}, {async_type, async_selector} \\ {nil, nil}) do
+    IO.inspect("Checking for #{service}")
     Hound.start_session
     navigate_to(url)
 
