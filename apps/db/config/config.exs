@@ -2,14 +2,10 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :db, DB.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "tracker_db",
-  username: "aop",
-  password: "",
-  hostname: "localhost"
-
 config :db, ecto_repos: [DB.Repo]
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
