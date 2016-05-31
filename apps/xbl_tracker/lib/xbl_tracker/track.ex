@@ -1,34 +1,34 @@
 defmodule XblTracker.Track do
   use GenServer
 
-  @check_interval 1000
+  @check_interval 60 * 1_000
 
   def start_link do
-    {:ok, pid} = GenServer.start_link(__MODULE__, [], name: __MODULE__)
+    {:ok, _pid} = GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-  def init(opts) do
-    Process.send_after(__MODULE__, :check, @check_interval)
+  def init(_opts) do
+    Process.send_after(__MODULE__, :check, 1000)
     IO.inspect "STARTED TRACK"
     {:ok, nil}
   end
 
   def handle_info(:check, prev_hash) do
     IO.inspect "GOT INFO"
-    {:ok, {page, snippet, hash}} = Tracker.check(
+    {:ok, {page, _snippet, hash}} = Tracker.check(
       {:xbl, "http://support.xbox.com/en-US/xbox-live-status", {:class, "core"}}
     )
 
-    IO.inspect hash
-    save_page(prev_hash == hash, page)
+    save_page(prev_hash == hash, {page, hash, "xbl"})
 
     Process.send_after(__MODULE__, :check, @check_interval)
     {:noreply, hash}
   end
 
-  def save_page(true, page), do: :ok
-  def save_page(false, page) do
+  def save_page(true, _), do: :ok
+  def save_page(false, params) do
     IO.inspect "SAVE THIS PAGE!!!"
+    Tracker.save(params)
   end
 
 end

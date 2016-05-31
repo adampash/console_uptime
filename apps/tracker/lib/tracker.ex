@@ -5,6 +5,8 @@ defmodule Tracker do
   """
   # use HTTPoison.Base
   use Hound.Helpers
+  alias DB.Repo
+  alias DB.Status
 
   @doc """
   Takes a service atom, url string, and CSS
@@ -28,7 +30,16 @@ defmodule Tracker do
       snippet
       |> :crypto.md5
       |> to_string
+    IO.inspect(hash)
 
     {:ok, {html, snippet, hash}}
+  end
+
+  def save({html, hash, service}) do
+    %Status{id: id} = Repo.insert!(%Status{hash: hash, service: service})
+
+    Path.expand("html/#{id}.html")
+    |> IO.inspect
+    |> File.write!(html)
   end
 end

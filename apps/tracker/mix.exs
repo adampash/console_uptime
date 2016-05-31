@@ -14,7 +14,7 @@ defmodule Tracker.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :floki, :httpoison, :hound]]
+    [applications: [:logger, :db, :hound]]
   end
 
   # Dependencies can be Hex packages:
@@ -28,9 +28,8 @@ defmodule Tracker.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:floki, "~> 0.8.1"},
-      {:httpoison, "~> 0.8.3"},
-      {:hound, "~> 1.0.0"}
+      {:hound, "~> 1.0.0"},
+      {:db, in_umbrella: true},
     ]
   end
 end

@@ -19,7 +19,7 @@ defmodule XblTracker.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [
-      applications: [:logger, :floki, :httpoison, :tracker],
+      applications: [:logger],
       mod: {XblTracker, []}
     ]
   end
@@ -35,8 +35,6 @@ defmodule XblTracker.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:floki, "~> 0.8.1"},
-      {:httpoison, "~> 0.8.3"},
       {:tracker, in_umbrella: true},
     ]
   end
