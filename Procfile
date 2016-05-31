@@ -1,2 +1,2 @@
-phantomjs: phantomjs --wd
+phantomjs: phantomjs --wd &
 web: mix phoenix.server
