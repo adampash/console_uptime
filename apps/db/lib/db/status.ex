@@ -1,6 +1,7 @@
 defmodule DB.Status do
   use Ecto.Schema
   import Ecto.Query, only: [from: 2]
+  alias DB.Repo
 
   schema "status" do
     field(:hash, :binary)
@@ -10,7 +11,7 @@ defmodule DB.Status do
   end
 
   def latest(service) do
-    query = from s in Status,
+    query = from s in DB.Status,
             where: s.service == ^service,
             order_by: [desc: s.updated_at],
             limit: 1
