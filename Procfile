@@ -1,1 +1,1 @@
-web: phantomjs --wd && mix phoenix.server
+web: ./startup

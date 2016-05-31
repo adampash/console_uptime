@@ -1,0 +1,4 @@
+#!/bin/bash
+
+phantomjs --wd &
+mix phoenix.server
