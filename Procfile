@@ -1,2 +1,2 @@
 phantomjs: phantomjs --wd
-app: mix run
+web: mix run --no-halt
