@@ -1,2 +1,2 @@
 phantomjs: phantomjs --wd
-web: mix run --no-halt
+web: mix phoenix.server
