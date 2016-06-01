@@ -28,7 +28,8 @@ defmodule DB.Status do
 
   def format_date(date) do
     {:ok, date} = Ecto.DateTime.dump(date)
-    Timex.Date.from(date)
+    
+    Timex.DateTime.from(date)
     |> Timex.format!("%B %e, %Y %I:%M%P", :strftime)
   end
 
