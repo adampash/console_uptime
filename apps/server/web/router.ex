@@ -16,6 +16,8 @@ defmodule Server.Router do
   scope "/", Server do
     pipe_through :browser # Use the default browser stack
 
+    get "/status/:service", StatusController, :index
+    get "/status/:service/:id", StatusController, :show
     get "/", PageController, :index
   end
 

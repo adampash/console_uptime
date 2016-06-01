@@ -18,7 +18,7 @@ defmodule DB.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :postgrex, :ecto],
+    [applications: [:logger, :postgrex, :ecto, :timex],
      mod: {DB, []}]
   end
 
@@ -37,8 +37,10 @@ defmodule DB.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:ecto, "~> 2.0.0-rc.5"},
-      {:postgrex, ">= 0.0.0"}
+      {:ecto, "~> 2.0.0-rc.5", override: true},
+      {:postgrex, ">= 0.0.0"},
+      {:timex, "~> 2.1"},
+      {:timex_ecto, "~> 1.0"},
     ]
   end
 end

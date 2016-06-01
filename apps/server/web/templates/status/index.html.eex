@@ -1,0 +1,8 @@
+<h1><%= @service %></h1>
+<%= for status <- @statuses do %>
+  <p>
+    <a href="<%= "/status/#{status.service}/#{status.id}" %>">
+      <%= format_date(status.updated_at) %>
+    </a>
+  </p>
+<% end %>

@@ -10,6 +10,13 @@ defmodule DB.Status do
     timestamps
   end
 
+  def all_updates(service) do
+    query = from s in DB.Status,
+            where: s.service == ^service,
+            order_by: [desc: s.updated_at]
+    Repo.all(query)
+  end
+
   def latest(service) do
     query = from s in DB.Status,
             where: s.service == ^service,
@@ -18,4 +25,11 @@ defmodule DB.Status do
 
     Repo.all(query)
   end
+
+  def format_date(date) do
+    {:ok, date} = Ecto.DateTime.dump(date)
+    Timex.Date.from(date)
+    |> Timex.format!("%B %e, %Y %I:%M%P", :strftime)
+  end
+
 end
