@@ -15,6 +15,18 @@ defmodule Tracker do
   """
   def check({service, url, {type, selector}}, {async_type, async_selector} \\ {nil, nil}) do
     IO.inspect("Checking for #{service}")
+    {html, snippet} = get_page_and_snippet(url, type, selector, async_type, async_selector)
+
+    hash =
+      snippet
+      |> :crypto.md5
+      |> to_string
+    IO.inspect(hash)
+
+    {:ok, {html, snippet, hash}}
+  end
+
+  def get_page_and_snippet(url, type, selector, async_type, async_selector) do
     Hound.start_session
     navigate_to(url)
 
@@ -25,14 +37,7 @@ defmodule Tracker do
     html = page_source
 
     Hound.end_session
-
-    hash =
-      snippet
-      |> :crypto.md5
-      |> to_string
-    IO.inspect(hash)
-
-    {:ok, {html, snippet, hash}}
+    {html, snippet}
   end
 
   def save({html, hash, service}) do

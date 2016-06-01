@@ -19,4 +19,7 @@ defmodule TrackerTest do
     assert is_binary(html)
     assert is_binary(snippet)
   end
+
+  test "Tracker returns the same hash for the same pages" do
+  end
 end
