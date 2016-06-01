@@ -20,7 +20,7 @@ defmodule PsnTracker.Track do
 
   def handle_info(:check, prev_hash) do
     {:ok, {page, _snippet, hash}} = Tracker.check(
-      {:psn, "https://status.playstation.com/en-US/", {:id, "statusArea"}},
+      {:psn, "https://status.playstation.com/en-US/", "#statusArea"},
       {:class, "globalMessage"}
     )
 

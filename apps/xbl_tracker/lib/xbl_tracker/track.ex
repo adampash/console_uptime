@@ -20,7 +20,7 @@ defmodule XblTracker.Track do
 
   def handle_info(:check, prev_hash) do
     {:ok, {page, _snippet, hash}} = Tracker.check(
-      {:xbl, "http://support.xbox.com/en-US/xbox-live-status", {:class, "core"}}
+      {:xbl, "http://support.xbox.com/en-US/xbox-live-status", ".core"}
     )
 
     save_page(prev_hash == hash, {page, hash, "xbl"})
