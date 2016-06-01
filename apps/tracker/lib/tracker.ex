@@ -34,6 +34,7 @@ defmodule Tracker do
     Hound.end_session
     html
     |> String.replace(~r{<!--.*-->}, "")
+    |> String.replace(~r{<input type="button" id="notifyMe".*>}, "")
   end
 
   def get_snippet(html, selector) do

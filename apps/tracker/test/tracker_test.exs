@@ -7,7 +7,7 @@ defmodule TrackerTest do
       {:xbl, "http://support.xbox.com/en-US/xbox-live-status", ".core"}
     )
 
-    IO.inspect String.match?(html, ~r{<!--.*-->})
+    IO.inspect String.match?(html, ~r{<input type="button" id="notifyMe".*>})
 
     assert is_binary(html)
     assert is_binary(snippet)
