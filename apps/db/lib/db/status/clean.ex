@@ -19,7 +19,7 @@ defmodule DB.Status.Clean do
 
   def delete_if_missing_file(id) do
     unless File.exists?(Path.expand("html/#{id}.html")) do
-      DB.Status.delete(id)
+      DB.Status.ignore(id)
     end
   end
 end

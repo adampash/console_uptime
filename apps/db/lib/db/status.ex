@@ -6,6 +6,7 @@ defmodule DB.Status do
   schema "status" do
     field(:hash, :binary)
     field(:service, :string)
+    field(:ignore, :boolean)
 
     timestamps
   end
@@ -13,6 +14,7 @@ defmodule DB.Status do
   def all_updates(service) do
     query = from s in DB.Status,
             where: s.service == ^service,
+            where: s.ignore == false,
             order_by: [desc: s.updated_at]
     Repo.all(query)
   end
@@ -31,6 +33,14 @@ defmodule DB.Status do
 
     Timex.DateTime.from(date, :local)
     |> Timex.format!("%B %e, %Y %I:%M%P", :strftime)
+  end
+
+  def ignore(id) do
+    status =
+      Repo.get!(DB.Status, id)
+      |> Ecto.Changeset.change(ignore: true)
+
+    Repo.update!(status)
   end
 
   def delete(id) do
