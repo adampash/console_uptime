@@ -1,0 +1,12 @@
+{
+  "name": "console uptime",
+  "description": "Track uptimes for psn/xbl",
+  "keywords": [
+    "dokku",
+  ],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "mix ecto.migrate"
+    }
+  }
+}
