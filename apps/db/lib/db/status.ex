@@ -15,14 +15,14 @@ defmodule DB.Status do
     query = from s in DB.Status,
             where: s.service == ^service,
             where: s.ignore == false,
-            order_by: [desc: s.updated_at]
+            order_by: [desc: s.inserted_at]
     Repo.all(query)
   end
 
   def latest(service) do
     query = from s in DB.Status,
             where: s.service == ^service,
-            order_by: [desc: s.updated_at],
+            order_by: [desc: s.inserted_at],
             limit: 1
 
     Repo.all(query)
