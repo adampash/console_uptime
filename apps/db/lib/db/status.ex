@@ -28,9 +28,14 @@ defmodule DB.Status do
 
   def format_date(date) do
     {:ok, date} = Ecto.DateTime.dump(date)
-    
-    Timex.DateTime.from(date)
+
+    Timex.DateTime.from(date, :local)
     |> Timex.format!("%B %e, %Y %I:%M%P", :strftime)
+  end
+
+  def delete(id) do
+    status = Repo.get!(DB.Status, id)
+    Repo.delete(status)
   end
 
 end

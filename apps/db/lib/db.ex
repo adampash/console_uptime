@@ -10,6 +10,7 @@ defmodule DB do
       # Define workers and child supervisors to be supervised
       # worker(DB.Worker, [arg1, arg2, arg3]),
       supervisor(DB.Repo, []),
+      worker(Task, [fn -> DB.Status.Clean.clean_all end]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
