@@ -1,7 +1,9 @@
 defmodule DB.Status.Clean do
   def clean_all do
     # Clean every five minutes
-    Process.sleep(1_000 * 60 * 5)
+    # Process.sleep(1_000 * 60 * 5)
+    # Using :timer for older Elixir
+    :timer.sleep(1_000 * 60 * 5)
 
     ["psn", "xbl"]
     |> Enum.map(&clean/1)
