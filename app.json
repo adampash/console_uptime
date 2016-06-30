@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "dokku": {
-      "postdeploy": "mix ecto.migrate"
+      "predeploy": "mix ecto.migrate"
     }
   }
 }
