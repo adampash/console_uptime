@@ -5,7 +5,8 @@ defmodule ConsoleUptime.Mixfile do
     [apps_path: "apps",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     elixir: "~> 1.3",
+     # won't work in my dokku setup yet
+    #  elixir: "~> 1.3",
      deps: deps]
   end
 
