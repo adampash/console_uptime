@@ -6,7 +6,7 @@ defmodule DB.Status do
   schema "status" do
     field(:hash, :binary)
     field(:service, :string)
-    # field(:ignore, :boolean)
+    field(:ignore, :boolean)
 
     timestamps
   end
