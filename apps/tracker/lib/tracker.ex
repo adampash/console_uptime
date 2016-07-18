@@ -55,6 +55,10 @@ defmodule Tracker do
     {html, snippet, hash}
   end
 
+  def save({"<html><head></head><body></body></html>", _, _}) do
+    nil
+  end
+
   def save({html, hash, service}) do
     %Status{id: id} = Repo.insert!(%Status{hash: hash, service: service})
 
