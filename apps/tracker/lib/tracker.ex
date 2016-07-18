@@ -27,7 +27,7 @@ defmodule Tracker do
     Hound.start_session
 
     navigate_to(url)
-    :timer.sleep 1000
+    :timer.sleep 2000
     if async_type, do: find_element(async_type, async_selector)
     html = page_source
 
